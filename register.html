@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أنشئ حساباً جديداً في مدرسة أربيل الإلكترونية وابدأ رحلتك التعليمية مع مناهج أربيل أونلاين.">
+    <title>إنشاء حساب جديد - مدرسة أربيل الإلكترونية</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link">
+                    <img src="assets/images/logo-placeholder.png" alt="شعار مدرسة أربيل الإلكترونية" class="logo-img">
+                    <span class="logo-text">مدرسة أربيل</span>
+                </a>
+            </div>
+            <nav class="main-navigation">
+                <ul>
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="courses.html" class="nav-link">الدورات</a></li>
+                    <li><a href="live-classes.html" class="nav-link">الحصص المباشرة</a></li>
+                    <li><a href="about.html" class="nav-link">من نحن</a></li>
+                    <li><a href="contact.html" class="nav-link">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-secondary">تسجيل الدخول</a>
+                <a href="register.html" class="btn btn-primary animate__animated animate__pulse animate__infinite">سجل الآن!</a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="auth-section section-padding">
+            <div class="container">
+<div class="auth-form-container animate__animated animate__fadeInUp">
+                    <h1 class="auth-title text-center">إنشاء حساب جديد</h1>
+                    <p class="auth-subtitle text-center">انضم إلينا اليوم وابدأ رحلة تعلم ممتعة!</p>
+
+                    <form id="registerForm" class="auth-form" novalidate> <div class="form-group">
+                            <label for="registerFullName">الاسم الكامل <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user-circle input-icon"></i>
+                                <input type="text" id="registerFullName" name="registerFullName" class="form-control" required placeholder="ادخل اسمك الكامل">
+                            </div>
+                            <span class="error-message"></span> </div>
+
+                        <div class="form-group">
+                            <label for="registerUsername">اسم المستخدم (اختياري)</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-at input-icon"></i>
+                                <input type="text" id="registerUsername" name="registerUsername" class="form-control" placeholder="ادخل اسم مستخدم (مثال: user123)">
+                            </div>
+                            <span class="error-message"></span> </div>
+
+                        <div class="form-group">
+                            <label for="registerEmail">البريد الإلكتروني <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="registerEmail" name="registerEmail" class="form-control" required placeholder="ادخل بريدك الإلكتروني">
+                            </div>
+                            <span class="error-message"></span> </div>
+
+                        <div class="form-group">
+                            <label for="registerPassword">كلمة المرور <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="registerPassword" name="registerPassword" class="form-control" required placeholder="اختر كلمة مرور قوية">
+                                <button type="button" class="toggle-password" aria-label="إظهار/إخفاء كلمة المرور">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message"></span> </div>
+
+                        <div class="form-group">
+                            <label for="registerConfirmPassword">تأكيد كلمة المرور <span class="required">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-check-circle input-icon"></i>
+                                <input type="password" id="registerConfirmPassword" name="registerConfirmPassword" class="form-control" required placeholder="أعد إدخال كلمة المرور">
+                                <button type="button" class="toggle-password" aria-label="إظهار/إخفاء كلمة المرور">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <span class="error-message"></span> </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                <label for="agreeTerms" class="checkbox-label">أوافق على <a href="terms.html" class="form-link" target="_blank">الشروط والأحكام</a> و <a href="privacy.html" class="form-link" target="_blank">سياسة الخصوصية</a> <span class="required">*</span></label>
+                            </div>
+                            <span class="error-message error-message-checkbox"></span> </div>
+
+                        <div class="form-group"> <span id="registerFormStatusMessage" class="status-message"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-submit-form">إنشاء حساب</button>
+
+                        <div class="form-switch-link text-center">
+                            <p>لديك حساب بالفعل؟ <a href="login.html" class="form-link-bold">سجل الدخول</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h4>عن مدرسة أربيل الإلكترونية</h4>
+                    <p>نوفر تجربة تعليمية فريدة ومبتكرة لطلاب منهاج أربيل عبر الإنترنت، مع التركيز على التفاعل والمرح.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="courses.html">الدورات</a></li>
+                        <li><a href="faq.html">الأسئلة الشائعة</a></li>
+                        <li><a href="privacy.html">سياسة الخصوصية</a></li>
+                        <li><a href="terms.html">شروط الخدمة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
+                    <p><i class="fas fa-envelope"></i> info@erbilschool.online</p>
+                    <p><i class="fas fa-phone"></i> +964 XXX XXXXXX</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-text">
+                <p>&copy; <span id="currentYear"></span> مدرسة أربيل الإلكترونية. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

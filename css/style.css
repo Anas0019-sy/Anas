@@ -1,0 +1,2400 @@
+/* ==== بداية ملف style.css ==== */
+
+/* --- خطوط وألوان أساسية --- */
+:root {
+    --primary-color: #2980b9; /* أزرق لطيف */
+    --secondary-color: #f39c12; /* برتقالي دافئ */
+    --accent-color: #2ecc71; /* أخضر مشرق */
+    --light-bg-color: #f8f9fa; /* خلفية فاتحة جداً */
+    --dark-text-color: #34495e; /* لون نص داكن */
+    --light-text-color: #ffffff;
+    --border-color: #e0e0e0;
+    --font-family-main: 'Cairo', sans-serif; /* استخدام خط Cairo */
+    --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --border-radius-main: 8px;
+}
+
+/* --- إعادة تعيين أساسية --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-main);
+    line-height: 1.7;
+    color: var(--dark-text-color);
+    background-color: #fff; /* خلفية بيضاء افتراضية */
+    direction: rtl; /* اتجاه النص من اليمين لليسار */
+}
+
+/* --- عناصر مساعدة (Utility Classes) --- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.section-padding {
+    padding: 60px 0;
+}
+
+.section-padding-alternate {
+    padding: 60px 0;
+    background-color: var(--light-bg-color);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    font-weight: 700;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.highlight {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- تنسيق الأزرار --- */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--border-radius-main);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.btn-primary:hover {
+    background-color: #1f6698; /* درجة أغمق من الأزرق */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--light-text-color);
+}
+
+.btn-secondary:hover {
+    background-color: #d48206; /* درجة أغمق من البرتقالي */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-outline-light {
+    background-color: transparent;
+    color: var(--light-text-color);
+    border-color: var(--light-text-color);
+}
+
+.btn-outline-light:hover {
+    background-color: var(--light-text-color);
+    color: var(--primary-color);
+}
+
+.btn-lg {
+    padding: 15px 35px;
+    font-size: 1.1rem;
+}
+
+/* --- الهيدر (رأس الصفحة) --- */
+.site-header {
+    background-color: var(--light-text-color);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 50px; /* اضبط ارتفاع الشعار حسب الحاجة */
+    margin-left: 10px; /* المسافة بين الشعار والنص في اللغة العربية */
+}
+
+.logo-text {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.main-navigation ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-navigation ul li {
+    margin-right: 25px; /* المسافة بين عناصر القائمة */
+}
+
+.main-navigation .nav-link {
+    text-decoration: none;
+    color: var(--dark-text-color);
+    font-weight: 600;
+    padding: 8px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.main-navigation .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0; /* يبدأ من اليمين في RTL */
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+.main-navigation .nav-link:hover,
+.main-navigation .nav-link.active {
+    color: var(--secondary-color);
+}
+
+.main-navigation .nav-link:hover::after,
+.main-navigation .nav-link.active::after {
+    width: 100%;
+}
+
+.header-actions .btn {
+    margin-right: 10px; /* المسافة بين الأزرار */
+}
+
+.mobile-menu-toggle {
+    display: none; /* مخفي في الشاشات الكبيرة */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+/* --- قسم الهيرو (الترحيب الرئيسي) --- */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #5dade2 100%); /* تدرج لوني جذاب */
+    color: var(--light-text-color);
+    padding: 80px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.hero-content {
+    max-width: 55%;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.hero-buttons .btn {
+    margin-right: 15px; /* لغات RTL */
+    margin-bottom: 10px; /* للموبايل */
+}
+
+.hero-image-container {
+    max-width: 40%;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-main);
+    /* يمكنك إضافة تأثير ظل خفيف هنا */
+}
+
+/* --- قسم الخدمات --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--light-text-color);
+    padding: 30px;
+    border-radius: var(--border-radius-main);
+    text-align: center;
+    box-shadow: var(--box-shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.service-title {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.service-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- قسم "لماذا تختارنا؟" --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    background-color: rgba(243, 156, 18, 0.1); /* خلفية خفيفة للأيقونة */
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.feature-title {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+/* --- قسم دعوة للعمل (CTA) --- */
+.cta-section {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.cta-title {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    color: var(--light-text-color); /* تأكد من أن لون العنوان الأساسي هنا أبيض */
+}
+.cta-section .section-title::after { /* تخصيص الخط تحت العنوان في هذا القسم */
+    background-color: var(--light-text-color);
+}
+
+
+.cta-text {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- الفوتر (أسفل الصفحة) --- */
+.site-footer {
+    background-color: var(--dark-text-color);
+    color: #bdc3c7; /* لون نص فاتح قليلاً للفوتر */
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-content h4 {
+    font-size: 1.3rem;
+    color: var(--light-text-color);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-content h4::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 2px;
+    background-color: var(--secondary-color);
+    margin-top: 5px;
+}
+
+
+.footer-about p,
+.footer-links ul li,
+.footer-contact p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: #bdc3c7;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-contact .fas,
+.footer-contact .fab { /* أيقونات Font Awesome في قسم الاتصال */
+    margin-left: 8px; /* لليمين في RTL */
+    color: var(--secondary-color);
+}
+
+.social-links a {
+    color: #bdc3c7;
+    font-size: 1.5rem;
+    margin-left: 15px; /* لليمين في RTL */
+    transition: color 0.3s ease;
+}
+.social-links a:last-child {
+    margin-left: 0;
+}
+
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+.copyright-text {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #4b6073; /* خط فاصل */
+    font-size: 0.9rem;
+}
+
+/* --- أنماط Responsive (للتجاوب مع الشاشات المختلفة) --- */
+
+/* شاشات متوسطة (Tablets) */
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-section .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+
+    .hero-image-container {
+        max-width: 70%; /* يمكن تعديلها */
+        margin: 0 auto;
+    }
+    .hero-buttons .btn {
+        margin-right: 0; /* إزالة الهامش الأيمن */
+        margin-left: 15px; /* إضافة هامش أيسر إذا لزم الأمر */
+    }
+    .hero-buttons .btn:last-child{
+        margin-left: 0;
+    }
+
+
+    .main-navigation {
+        display: none; /* سيتم إظهار قائمة الموبايل لاحقاً بـ JS */
+        /* هنا يمكن إضافة أنماط لقائمة الموبايل عند تفعيلها بـ JS */
+    }
+
+    .mobile-menu-toggle {
+        display: block; /* إظهار زر قائمة الموبايل */
+    }
+
+    .header-actions .btn {
+        padding: 8px 18px;
+        font-size: 0.9rem;
+    }
+     .header-actions .btn:first-child {
+        margin-left: 8px;
+    }
+}
+
+/* شاشات صغيرة (Mobiles) */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .services-grid,
+    .features-grid,
+    .footer-content {
+        grid-template-columns: 1fr; /* عمود واحد */
+    }
+
+    .site-header .container {
+        flex-wrap: wrap; /* السماح للعناصر بالالتفاف إذا لم يكن هناك مساحة كافية */
+    }
+    .logo-link {
+      margin-bottom: 10px; /* مسافة إذا التف الشعار */
+    }
+    .header-actions {
+      /* order: 2; */ /* لتغيير ترتيب الظهور */
+      margin-top: 10px; /* مسافة إذا التف */
+      width: 100%;
+      text-align: center;
+    }
+     .header-actions .btn {
+        margin: 5px;
+     }
+
+
+    .footer-content {
+        text-align: center;
+    }
+    .footer-content h4::after {
+        margin-right: auto; /* لتوسيط الخط تحت العنوان في الفوتر */
+        margin-left: auto;
+    }
+    .social-links {
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .btn-lg {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .service-card {
+        padding: 20px;
+    }
+}
+/* في ملف style.css */
+
+/* ... (بقية أكواد CSS الخاصة بك) ... */
+
+/* أنماط قائمة الموبايل عند تفعيلها */
+@media (max-width: 992px) { /* نفس النقطة التي يظهر فيها زر الموبايل */
+    .main-navigation {
+        display: none; /* مخفية بشكل افتراضي */
+        position: absolute;
+        top: 100%; /* أسفل الهيدر مباشرة */
+        right: 0; /* لليمين في RTL */
+        left: 0; /* لتأخذ كامل العرض */
+        background-color: #fff; /* لون خلفية للقائمة المفتوحة */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 15px;
+        z-index: 999; /* لتكون فوق العناصر الأخرى */
+    }
+
+    .main-navigation.active {
+        display: block; /* إظهار القائمة عند وجود كلاس active */
+    }
+
+    .main-navigation ul {
+        flex-direction: column; /* جعل الروابط عمودية */
+        width: 100%;
+    }
+
+    .main-navigation ul li {
+        margin-right: 0; /* إزالة الهامش الجانبي */
+        width: 100%;
+        text-align: center; /* توسيط النص إذا رغبت */
+    }
+
+    .main-navigation .nav-link {
+        display: block; /* جعل الرابط يأخذ كامل عرض li */
+        padding: 12px 15px;
+        border-bottom: 1px solid var(--border-color); /* خط فاصل بين الروابط */
+    }
+    .main-navigation ul li:last-child .nav-link {
+        border-bottom: none; /* إزالة الخط من آخر عنصر */
+    }
+
+    .main-navigation .nav-link::after {
+        display: none; /* إخفاء الخط السفلي للرابط في وضع الموبايل إذا كنت لا تريده */
+    }
+}
+
+/* تنسيق الهيدر عند التمرير */
+.site-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95); /* خلفية شبه شفافة قليلاً */
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    /* يمكنك إضافة تأثيرات أخرى مثل تصغير الـ padding */
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
+}
+
+/* (اختياري) تأثير بطاقة الخدمة عند التمرير بالماوس إذا أردت التحكم به من JS */
+/*
+.service-card.card-hover-effect {
+    border: 2px solid var(--accent-color);
+}
+*/
+
+/* ==== نهاية ملف style.css ==== */
+/* ==== بداية أكواد CSS لصفحة الدورات (courses.html) ==== */
+
+/* --- قسم ترويسة الصفحة (Page Header) --- */
+
+.page-title {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: var(--dark-text-color);
+    max-width: 700px;
+    margin: 0 auto 20px; /* توسيط النص الأفقي إذا كان أقصر من الحاوية */
+    opacity: 0.8;
+}
+
+
+/* --- (اختياري) قسم الفلاتر والبحث --- */
+.courses-filter-bar {
+    display: flex;
+    flex-wrap: wrap; /* للسماح بالالتفاف في الشاشات الصغيرة */
+    gap: 15px; /* مسافة بين عناصر الفلتر */
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: var(--light-bg-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.filter-search-input,
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-main);
+    font-family: var(--font-family-main);
+    font-size: 0.95rem;
+    flex-grow: 1; /* لجعل حقل البحث والاختيار يأخذان مساحة متاحة */
+}
+
+.filter-search-input {
+    min-width: 250px; /* عرض أدنى لحقل البحث */
+}
+
+.filter-select {
+    min-width: 200px; /* عرض أدنى لحقل الاختيار */
+    cursor: pointer;
+}
+
+.filter-btn {
+    /* يستخدم نفس تنسيق .btn .btn-primary */
+    flex-grow: 0; /* حتى لا يتمدد زر الفلتر */
+}
+
+
+/* --- شبكة عرض الدورات --- */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* إنشاء أعمدة متجاوبة */
+    gap: 30px; /* المسافة بين بطاقات الدورات */
+}
+
+/* --- بطاقة الدورة --- */
+.course-card {
+    background-color: var(--light-text-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--box-shadow-light);
+    overflow: hidden; /* لضمان أن الصورة لا تخرج عن حدود البطاقة المستديرة */
+    display: flex;
+    flex-direction: column; /* لجعل المحتوى تحت الصورة والزر في الأسفل */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.course-card-image img {
+    width: 100%;
+    height: 200px; /* ارتفاع ثابت لصورة الدورة */
+    object-fit: cover; /* لضمان ملء الصورة للمساحة المخصصة دون تشويه */
+    display: block; /* لإزالة أي مسافات إضافية تحت الصورة */
+}
+
+.course-card-content {
+    padding: 20px;
+    flex-grow: 1; /* لجعل هذا الجزء يتمدد لملء المساحة المتاحة */
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.course-card-instructor {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+
+.course-card-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--dark-text-color);
+    margin-bottom: 15px;
+    flex-grow: 1; /* لجعل الوصف يتمدد ويأخذ المساحة المتبقية قبل الميتا والزر */
+}
+
+.course-card-meta {
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap; /* للسماح بالالتفاف إذا كان النص طويلاً */
+    gap: 15px; /* مسافة بين عناصر الميتا */
+}
+
+.course-card-meta span {
+    display: flex;
+    align-items: center;
+}
+
+.course-card-meta i {
+    margin-left: 5px; /* لليمين في RTL */
+    color: var(--secondary-color);
+}
+
+.course-card-button {
+    /* يستخدم نفس تنسيق .btn .btn-primary */
+    /* يمكنك إضافة تنسيقات خاصة هنا إذا أردت */
+    display: block; /* لجعل الزر يأخذ كامل عرض البطاقة إذا رغبت */
+    width: 100%; /* أو اتركه inline-block كما هو معرف في .btn */
+    margin-top: auto; /* لدفع الزر إلى أسفل البطاقة إذا كان المحتوى أقصر */
+}
+
+
+/* --- (اختياري) قسم ترقيم الصفحات --- */
+.pagination {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.pagination ul {
+    list-style: none;
+    padding: 0;
+    display: inline-block; /* لتوسيط القائمة */
+}
+
+.pagination ul li {
+    display: inline-block;
+    margin-right: 5px; /* لليمين في RTL */
+}
+.pagination ul li:last-child {
+    margin-right: 0;
+}
+
+
+.pagination .page-link {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: var(--primary-color);
+    background-color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination .page-link:hover,
+.pagination .page-link.active {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    border-color: var(--primary-color);
+}
+
+/* --- تعديلات Responsive إضافية لصفحة الدورات --- */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2.2rem;
+    }
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr; /* عمود واحد في الشاشات الصغيرة جداً */
+    }
+
+    .filter-search-input,
+    .filter-select,
+    .filter-btn {
+        width: 100%; /* جعل عناصر الفلتر تأخذ كامل العرض في الشاشات الصغيرة */
+        margin-bottom: 10px;
+    }
+    .filter-btn {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-card-content {
+        padding: 15px;
+    }
+    .course-card-title {
+        font-size: 1.2rem;
+    }
+    .course-card-meta {
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+}
+
+/* ==== نهاية أكواد CSS لصفحة الدورات (courses.html) ==== */
+/* ==== بداية أكواد CSS لصفحة "من نحن" (about.html) ==== */
+
+/* --- ترويسة الصفحة (Page Header) --- */
+/* التنسيقات الحالية لـ .page-header-section, .page-title, .page-subtitle
+   من المفترض أن تعمل بشكل جيد هنا أيضاً. إذا احتجت لتعديلات خاصة بهذه الصفحة،
+   يمكنك إضافتها هنا. */
+
+/* --- حاوية Flex عامة للصفوف --- */
+.row-flex-container {
+    display: flex;
+    flex-wrap: wrap; /* للسماح بالالتفاف في الشاشات الصغيرة */
+    gap: 30px; /* المسافة بين العناصر */
+    align-items: flex-start; /* محاذاة العناصر من الأعلى بشكل افتراضي */
+}
+
+.row-flex-container .flex-item {
+    flex: 1; /* لجعل العناصر تتقاسم المساحة بالتساوي */
+    min-width: 280px; /* عرض أدنى قبل الالتفاف */
+}
+
+.row-flex-container.align-items-center {
+    align-items: center; /* لمحاذاة العناصر في المنتصف عمودياً */
+}
+
+/* --- عناوين الأقسام الصغيرة --- */
+.section-title-small {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex; /* لمحاذاة الأيقونة مع النص */
+    align-items: center;
+}
+
+.icon-before {
+    margin-left: 10px; /* لليمين في RTL */
+    font-size: 1.5rem; /* حجم الأيقونة */
+    color: var(--secondary-color);
+}
+
+/* --- قسم قصتنا أو أهدافنا --- */
+.our-story-section .flex-item-media {
+    flex-basis: 45%; /* تحديد عرض مبدئي لعنصر الصورة */
+    min-width: 280px;
+}
+
+.our-story-section .flex-item-content {
+    flex-basis: 50%; /* تحديد عرض مبدئي لعنصر المحتوى */
+    min-width: 280px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    display: block; /* لإزالة أي مسافات إضافية */
+}
+
+.rounded-corners {
+    border-radius: var(--border-radius-main);
+}
+
+.list-styled {
+    list-style: none;
+    padding-right: 0; /* إزالة الحشو الافتراضي للقائمة في RTL */
+}
+
+.list-styled li {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start; /* محاذاة الأيقونة مع بداية النص */
+}
+
+.list-styled .list-icon {
+    color: var(--accent-color);
+    margin-left: 10px; /* لليمين في RTL */
+    font-size: 1.2rem; /* حجم أيقونة الصح */
+    margin-top: 2px; /* لضبط المحاذاة العمودية مع النص بشكل أفضل */
+}
+
+/* --- قسم فريق العمل --- */
+.section-subtitle-narrow {
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.team-member-card {
+    background-color: var(--light-text-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: var(--box-shadow-light);
+    text-align: center;
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.team-member-image img {
+    width: 150px; /* حجم صورة المعلم */
+    height: 150px;
+    border-radius: 50%; /* لجعل الصورة دائرية */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--light-bg-color); /* إطار خفيف حول الصورة */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.team-member-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.team-member-role {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.team-member-bio {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--dark-text-color);
+    margin-bottom: 15px;
+    min-height: 50px; /* ارتفاع أدنى للنبذة لتوحيد شكل البطاقات قليلاً */
+}
+
+.team-member-social a {
+    color: var(--dark-text-color);
+    font-size: 1.2rem;
+    margin: 0 8px;
+    transition: color 0.3s ease;
+}
+
+.team-member-social a:hover {
+    color: var(--primary-color);
+}
+
+/* --- تعديلات Responsive إضافية لصفحة "من نحن" --- */
+@media (max-width: 768px) {
+    .section-title-small {
+        font-size: 1.6rem;
+    }
+
+    .our-story-section .flex-item-media,
+    .our-story-section .flex-item-content {
+        flex-basis: 100%; /* جعل الصورة والنص يأخذان كامل العرض في الشاشات الصغيرة */
+    }
+    .our-story-section .flex-item-media {
+        margin-bottom: 20px; /* مسافة بين الصورة والنص عند الالتفاف */
+    }
+
+    .team-member-image img {
+        width: 120px;
+        height: 120px;
+    }
+    .team-member-name {
+        font-size: 1.3rem;
+    }
+}
+
+
+/* ==== نهاية أكواد CSS لصفحة "من نحن" (about.html) ==== */
+/* ==== بداية أكواد CSS لصفحة "اتصل بنا" (contact.html) ==== */
+
+/* --- حاوية معلومات الاتصال ونموذج الاتصال --- */
+.contact-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* عمودان متساويان بشكل افتراضي */
+    gap: 40px; /* المسافة بين قسم المعلومات وقسم النموذج */
+    align-items: flex-start; /* محاذاة العناصر من الأعلى */
+}
+
+/* --- قسم معلومات الاتصال --- */
+.contact-info-wrapper .section-title-small {
+    margin-bottom: 20px; /* زيادة المسافة تحت العنوان الفرعي هنا */
+}
+
+.contact-intro-text {
+    margin-bottom: 25px;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.contact-details-list {
+    list-style: none;
+    padding-right: 0; /* إزالة الحشو الافتراضي في RTL */
+    margin-bottom: 30px;
+}
+
+.contact-details-list li {
+    display: flex;
+    align-items: flex-start; /* محاذاة الأيقونة مع بداية النص */
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.contact-icon {
+    font-size: 1.5rem; /* حجم أيقونة الاتصال */
+    color: var(--secondary-color);
+    margin-left: 15px; /* لليمين في RTL */
+    margin-top: 3px; /* لضبط المحاذاة العمودية بشكل أفضل */
+    flex-shrink: 0; /* لمنع الأيقونة من التقلص */
+    width: 25px; /* تحديد عرض للأيقونة لضمان محاذاة النصوص */
+    text-align: center;
+}
+
+.contact-details-list div strong {
+    display: block;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 3px;
+}
+
+.contact-details-list div p {
+    margin-bottom: 0;
+    color: var(--dark-text-color);
+    font-size: 0.95rem;
+}
+
+.contact-details-list div p a {
+    color: var(--dark-text-color);
+    text-decoration: none;
+}
+
+.contact-details-list div p a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.contact-social-links p {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.contact-social-links .social-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: var(--light-bg-color);
+    color: var(--primary-color);
+    margin-left: 8px; /* لليمين في RTL */
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.contact-social-links .social-icon:last-child {
+    margin-left: 0;
+}
+
+.contact-social-links .social-icon:hover {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+/* --- قسم نموذج الاتصال --- */
+.contact-form-wrapper .section-title-small {
+    margin-bottom: 20px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 20px;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 600;
+    color: var(--dark-text-color);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.contact-form .required {
+    color: #e74c3c; /* لون أحمر للنجمة */
+    margin-right: 3px; /* لليمين في RTL */
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    font-family: var(--font-family-main);
+    font-size: 1rem;
+    color: var(--dark-text-color);
+    background-color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-main);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(41, 128, 185, 0.25); /* ظل خفيف عند التركيز */
+}
+
+textarea.form-control {
+    min-height: 120px; /* ارتفاع أدنى لحقل الرسالة */
+    resize: vertical; /* السماح بتغيير الحجم عمودياً فقط */
+}
+
+.btn-submit-form {
+    /* يستخدم نفس تنسيق .btn .btn-primary */
+    /* يمكنك إضافة تنسيقات إضافية هنا إذا لزم الأمر */
+    width: auto; /* أو 100% إذا أردت أن يأخذ كامل العرض */
+    padding: 12px 30px;
+}
+
+/* --- قسم الخريطة --- */
+.map-section {
+    padding: 0; /* إزالة الحشو إذا كانت الخريطة ستمتد للحواف */
+    background-color: var(--light-bg-color); /* خلفية خفيفة لمنطقة الخريطة */
+}
+
+.map-placeholder iframe {
+    display: block; /* لإزالة أي مسافات إضافية */
+    width: 100%;
+    /* height: 450px; /* تم تحديدها في HTML */
+    border: none;
+}
+
+/* --- تعديلات Responsive إضافية لصفحة "اتصل بنا" --- */
+@media (max-width: 992px) {
+    .contact-grid-container {
+        grid-template-columns: 1fr; /* عمود واحد في الشاشات المتوسطة والصغيرة */
+    }
+
+    .contact-info-wrapper {
+        margin-bottom: 40px; /* مسافة إضافية عند ترتيب العناصر عمودياً */
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-details-list li {
+        font-size: 0.95rem; /* تصغير حجم الخط قليلاً في الموبايل */
+    }
+    .contact-icon {
+        font-size: 1.3rem;
+        margin-left: 12px;
+    }
+}
+
+
+/* ==== نهاية أكواد CSS لصفحة "اتصل بنا" (contact.html) ==== */
+/* ==== بداية أكواد CSS لصفحة "الحصص المباشرة" (live-classes.html) ==== */
+
+/* --- قسم مقدمة عن الحصص المباشرة --- */
+/* .row-flex-container, .flex-item-content, .flex-item-media, .list-styled, .list-icon
+   من المفترض أن تستخدم التنسيقات العامة الموجودة بالفعل. */
+
+.subsection-title {
+    font-size: 1.5rem; /* حجم أصغر من .section-title-small */
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: 25px; /* مسافة قبل العنوان الفرعي */
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.intro-live-classes-section .subsection-title:first-of-type {
+    margin-top: 0; /* إزالة المسافة العلوية لأول عنوان فرعي في القسم */
+}
+
+/* --- قسم كيفية الانضمام --- */
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.step-card {
+    background-color: var(--light-text-color);
+    padding: 25px;
+    border-radius: var(--border-radius-main);
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+    position: relative;
+    overflow: hidden; /* لإخفاء أجزاء من رقم الخطوة إذا كان كبيراً */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.step-number {
+    position: absolute;
+    top: -10px;
+    right: -10px; /* لليمين في RTL */
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    opacity: 0.1; /* جعل الرقم شفافاً قليلاً */
+    line-height: 1;
+    z-index: 0;
+}
+
+.step-icon {
+    font-size: 2.8rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    background-color: rgba(46, 204, 113, 0.1); /* خلفية خفيفة للأيقونة */
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative; /* ليكون فوق الرقم */
+    z-index: 1;
+}
+
+.step-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    position: relative; /* ليكون فوق الرقم */
+    z-index: 1;
+}
+
+.step-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    position: relative; /* ليكون فوق الرقم */
+    z-index: 1;
+}
+
+/* --- قسم جدول الحصص القادمة --- */
+.schedule-placeholder .lead {
+    font-size: 1.2rem;
+    color: var(--dark-text-color);
+    margin-bottom: 20px;
+}
+
+.schedule-placeholder .fa-spinner {
+    color: var(--primary-color); /* استخدام اللون الأساسي للـ spinner */
+}
+
+/* تنسيقات الجدول (إذا تم تفعيله لاحقاً) */
+.schedule-table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse; /* لدمج حدود الخلايا */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.schedule-table th,
+.schedule-table td {
+    border: 1px solid var(--border-color);
+    padding: 12px 15px;
+    text-align: right; /* لليمين في RTL */
+    font-size: 0.95rem;
+}
+
+.schedule-table thead th {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.schedule-table tbody tr:nth-child(even) {
+    background-color: var(--light-bg-color); /* تلوين الصفوف الزوجية */
+}
+
+.schedule-table tbody tr:hover {
+    background-color: #e9ecef; /* لون عند التمرير فوق الصف */
+}
+
+/* --- قسم المتطلبات الفنية والنصائح --- */
+.technical-tips-section .subsection-title .icon-before {
+    color: var(--secondary-color); /* تخصيص لون الأيقونة في هذا القسم */
+}
+
+/* --- تعديلات Responsive إضافية لصفحة "الحصص المباشرة" --- */
+@media (max-width: 768px) {
+    .subsection-title {
+        font-size: 1.3rem;
+    }
+
+    .step-title {
+        font-size: 1.1rem;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    /* قد تحتاج لجعل الجدول قابلاً للتمرير أفقياً في الشاشات الصغيرة جداً */
+    .schedule-placeholder { /* أو .schedule-table-wrapper إذا أضفت حاوية للجدول */
+        overflow-x: auto;
+    }
+}
+
+
+/* ==== نهاية أكواد CSS لصفحة "الحصص المباشرة" (live-classes.html) ==== */
+/* ==== بداية أكواد CSS لصفحات المصادقة (login.html, register.html) ==== */
+
+.auth-section {
+    /* background-color: var(--light-bg-color); */ /* يمكن إضافته إذا أردت خلفية مختلفة للقسم */
+    /* section-padding تم تطبيقه في HTML */
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* لحساب ارتفاع الهيدر والفوتر التقريبي ومحاولة توسيط النموذج عمودياً */
+}
+
+.auth-form-container {
+    max-width: 480px; /* عرض أقصى لحاوية النموذج */
+    margin: 30px auto; /* توسيط أفقي مع مسافة علوية وسفلية */
+    padding: 30px 35px;
+    background-color: var(--light-text-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+}
+
+.auth-title {
+    font-size: 2rem; /* حجم أصغر قليلاً من .page-title */
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.auth-subtitle {
+    font-size: 1rem;
+    color: var(--dark-text-color);
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.auth-form .form-group {
+    margin-bottom: 22px; /* تعديل المسافة بين حقول النموذج قليلاً */
+}
+
+/* تنسيق حقل الإدخال مع أيقونة */
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon .input-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px; /* لليمين في RTL */
+    color: var(--dark-text-color);
+    opacity: 0.6;
+    font-size: 0.95rem;
+}
+
+.input-with-icon .form-control {
+    padding-right: 40px; /* لليمين في RTL، لإفساح المجال للأيقونة */
+    /* padding-left: 15px; /* الحشو الافتراضي للجهة الأخرى */
+}
+
+/* تنسيق زر إظهار/إخفاء كلمة المرور */
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 10px; /* لليسار في RTL */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: var(--dark-text-color);
+    opacity: 0.7;
+    font-size: 0.95rem;
+}
+
+.toggle-password:hover {
+    opacity: 1;
+}
+
+/* لإفساح المجال لزر إظهار/إخفاء كلمة المرور إذا كان موجوداً مع أيقونة */
+.input-with-icon .form-control[type="password"] {
+    padding-left: 40px; /* لليسار في RTL */
+    padding-right: 40px; /* لليمين في RTL (إذا كانت هناك أيقونة أيضاً) */
+}
+/* إذا لم تكن هناك أيقونة يمين لحقل كلمة المرور، فقط زر الإظهار/الإخفاء */
+.input-with-icon:not(:has(.input-icon)) .form-control[type="password"] {
+    padding-left: 40px; /* لليسار في RTL */
+    padding-right: 15px; /* الحشو الافتراضي لليمين */
+}
+/* إذا كانت هناك أيقونة يمين فقط (بدون زر إظهار/إخفاء) */
+.input-with-icon:not(:has(.toggle-password)) .form-control {
+    padding-right: 40px; /* لليمين في RTL */
+    padding-left: 15px; /* الحشو الافتراضي لليسار */
+}
+
+
+
+/* تنسيق مجموعة "تذكرني" ورابط "هل نسيت كلمة المرور؟" */
+.form-group-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-left: 8px; /* لليمين في RTL */
+    accent-color: var(--primary-color); /* لتلوين مربع الاختيار بلون العلامة التجارية */
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    font-weight: 500; /* أخف من التسميات العادية */
+    color: var(--dark-text-color);
+    cursor: pointer;
+    margin-bottom: 0; /* إزالة الهامش السفلي الافتراضي للتسمية هنا */
+}
+
+.form-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
+
+/* تنسيق زر يأخذ كامل العرض */
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* تنسيق رابط التحويل بين تسجيل الدخول والتسجيل */
+.form-switch-link {
+    margin-top: 25px;
+    font-size: 0.95rem;
+}
+
+.form-switch-link p {
+    margin-bottom: 0;
+}
+
+.form-link-bold {
+    font-weight: 600;
+    color: var(--secondary-color); /* لون مختلف لتمييزه */
+}
+.form-link-bold:hover {
+    color: var(--primary-color);
+}
+
+/* --- تعديلات Responsive لصفحات المصادقة --- */
+@media (max-width: 576px) {
+    .auth-form-container {
+        padding: 25px 20px;
+        margin: 20px auto;
+    }
+    .auth-title {
+        font-size: 1.7rem;
+    }
+    .auth-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+    .form-group-inline {
+        flex-direction: column; /* ترتيب العناصر عمودياً في الشاشات الصغيرة جداً */
+        align-items: flex-start; /* محاذاة لليمين */
+    }
+    .form-group-inline .checkbox-group {
+        margin-bottom: 10px; /* مسافة بين "تذكرني" و "هل نسيت كلمة المرور؟" */
+    }
+}
+
+/* ==== نهاية أكواد CSS لصفحات المصادقة ==== */
+/* ==== بداية أكواد CSS لصفحة تفاصيل الدورة (course-detail.html) ==== */
+
+/* --- قسم ترويسة الدورة --- */
+.course-hero-section {
+    background-color: var(--light-bg-color); /* أو لون آخر مناسب */
+    /* padding: 40px 0; // تم التحكم به عبر section-padding-alternate */
+}
+
+.course-breadcrumbs .breadcrumb {
+    background-color: transparent;
+    padding: 0;
+    margin-bottom: 15px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.course-breadcrumbs .breadcrumb-item {
+    font-size: 0.9rem;
+    display: flex; /* لمحاذاة الفاصل مع النص */
+    align-items: center;
+}
+
+.course-breadcrumbs .breadcrumb-item a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.course-breadcrumbs .breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.course-breadcrumbs .breadcrumb-item.active {
+    color: var(--dark-text-color);
+    opacity: 0.8;
+}
+
+.course-breadcrumbs .breadcrumb-item + .breadcrumb-item::before {
+    content: "/"; /* فاصل بين عناصر Breadcrumb */
+    padding: 0 8px;
+    color: var(--dark-text-color);
+    opacity: 0.7;
+}
+
+.course-main-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--dark-text-color);
+    margin-bottom: 10px;
+}
+
+.course-tagline {
+    font-size: 1.2rem;
+    color: var(--dark-text-color);
+    opacity: 0.9;
+    margin-bottom: 20px;
+    max-width: 800px; /* تحديد عرض أقصى للوصف القصير */
+}
+
+.course-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 25px; /* مسافة بين العناصر (عمودي أفقي) */
+    font-size: 0.95rem;
+    color: var(--dark-text-color);
+}
+
+.course-meta-info span {
+    display: flex;
+    align-items: center;
+}
+
+.course-meta-info i {
+    margin-left: 8px; /* لليمين في RTL */
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+.course-meta-info .text-warning { /* لتلوين النجوم باللون الأصفر */
+    color: #ffc107 !important;
+}
+.course-meta-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+.course-meta-info a:hover {
+    text-decoration: underline;
+}
+
+/* --- جسم صفحة تفاصيل الدورة (محتوى رئيسي + شريط جانبي) --- */
+.course-layout-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* العمود الرئيسي أعرض من الشريط الجانبي */
+    gap: 30px; /* المسافة بين العمود الرئيسي والشريط الجانبي */
+}
+
+.course-media-container {
+    margin-bottom: 30px;
+}
+.course-media-container img,
+.course-media-container video {
+    border: 1px solid var(--border-color); /* إطار خفيف للصورة أو الفيديو */
+}
+
+
+/* --- تبويبات محتوى الدورة --- */
+.course-tabs-container {
+    margin-top: 30px;
+}
+
+.tabs-nav {
+    display: flex;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 25px;
+}
+
+.tab-link {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-text-color);
+    opacity: 0.7;
+    background-color: transparent;
+    border: none;
+    border-bottom: 3px solid transparent; /* خط سفلي شفاف */
+    cursor: pointer;
+    transition: color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    margin-left: 5px; /* لليمين في RTL */
+}
+.tab-link:first-child {
+    margin-right: 0;
+}
+
+.tab-link:hover {
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+.tab-link.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    opacity: 1;
+}
+
+.tab-pane {
+    display: none; /* إخفاء كل محتويات التبويبات بشكل افتراضي */
+    animation: fadeIn 0.5s ease-in-out; /* أنيميشن بسيط للظهور */
+}
+
+.tab-pane.active {
+    display: block; /* إظهار محتوى التبويب النشط فقط */
+}
+
+.tab-content-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.content-subtitle { /* H4 داخل وصف الدورة */
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--dark-text-color);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+/* تخصيص لقوائم "ماذا ستتعلم" و "المتطلبات" */
+.check-list li .list-icon { /* الأيقونة بجانب عناصر القائمة ذات الصح */
+    color: var(--accent-color); /* أخضر */
+}
+.dot-list li .list-icon-small { /* أيقونة النقطة الصغيرة */
+    color: var(--secondary-color);
+    font-size: 0.6rem; /* حجم أصغر للنقطة */
+    margin-left: 12px;
+    margin-top: 6px; /* لضبط المحاذاة */
+}
+
+
+/* --- تبويب المنهج (Curriculum) - الأكورديون --- */
+.curriculum-accordion {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-main);
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--border-color);
+}
+.accordion-item:last-child {
+    border-bottom: none;
+}
+
+.accordion-header {
+    width: 100%;
+    background-color: var(--light-bg-color);
+    padding: 15px 20px;
+    text-align: right; /* لليمين في RTL */
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-text-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #e9ecef;
+}
+
+.accordion-icon {
+    font-size: 0.9rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(180deg); /* تدوير أيقونة السهم عند الفتح */
+}
+
+.accordion-content {
+    padding: 15px 20px;
+    display: none; /* مخفي بشكل افتراضي */
+    background-color: var(--light-text-color);
+    border-top: 1px solid var(--border-color);
+}
+.accordion-content.active { /* يمكن استخدام هذا الكلاس أو التحكم في display مباشرة بـ JS */
+    display: block;
+}
+
+
+.accordion-content ul {
+    list-style: none;
+    padding-right: 0;
+}
+
+.accordion-content ul li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+.accordion-content ul li a {
+    text-decoration: none;
+    color: var(--dark-text-color);
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.accordion-content ul li a:hover {
+    color: var(--primary-color);
+}
+
+.lesson-icon {
+    margin-left: 10px; /* لليمين في RTL */
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+/* --- تبويب المعلم (Instructor) --- */
+.instructor-profile-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 15px;
+    background-color: var(--light-bg-color);
+    border-radius: var(--border-radius-main);
+}
+
+.instructor-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--light-text-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.instructor-info h4 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.instructor-title {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.instructor-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- تبويب التقييمات (Reviews) --- */
+.review-item {
+    border-bottom: 1px dashed var(--border-color);
+    padding: 20px 0;
+}
+.review-item:last-child {
+    border-bottom: none;
+}
+.review-item:first-child {
+    padding-top: 0;
+}
+
+
+.review-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.review-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 12px; /* لليمين في RTL */
+}
+
+.review-author span {
+    font-weight: 600;
+    color: var(--dark-text-color);
+}
+
+.review-rating {
+    margin-bottom: 8px;
+    font-size: 0.9rem; /* حجم النجوم */
+}
+/* لون النجوم تم تحديده بـ text-warning في HTML */
+
+.review-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 5px;
+}
+
+.review-date {
+    font-size: 0.8rem;
+    color: #777;
+    font-style: italic;
+}
+
+/* --- الشريط الجانبي للدورة --- */
+.course-sidebar-aside .sticky-sidebar {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 100px; /* مسافة من الأعلى، يجب أن تكون أكبر من ارتفاع الهيدر إذا كان الهيدر لزجاً */
+    background-color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-main);
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.course-price {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.course-price .current-price {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.course-price .original-price {
+    font-size: 1.1rem;
+    color: #777;
+    text-decoration: line-through;
+    margin-right: 10px; /* لليمين في RTL */
+}
+
+.course-price .discount-badge {
+    background-color: var(--accent-color);
+    color: var(--light-text-color);
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.course-enroll-box .btn { /* لتطبيق على أزرار التسجيل والإضافة للسلة */
+    margin-bottom: 12px;
+}
+
+.course-features-list {
+    margin-top: 25px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.course-features-list h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--dark-text-color);
+}
+
+.course-features-list ul {
+    list-style: none;
+    padding-right: 0;
+}
+
+.course-features-list ul li {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.course-features-list ul li i {
+    margin-left: 10px; /* لليمين في RTL */
+    color: var(--primary-color);
+    font-size: 1rem;
+    width: 20px; /* لتوحيد محاذاة النص */
+    text-align: center;
+}
+
+.share-course {
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+.share-course .btn i {
+    margin-right: 5px; /* لليمين في RTL */
+}
+
+
+/* --- تعديلات Responsive لصفحة تفاصيل الدورة --- */
+@media (max-width: 992px) {
+    .course-layout-grid {
+        grid-template-columns: 1fr; /* عمود واحد في الشاشات المتوسطة */
+    }
+    .course-sidebar-aside {
+        margin-top: 30px; /* مسافة عند تحول التخطيط لعمود واحد */
+    }
+    .course-sidebar-aside .sticky-sidebar {
+        position: static; /* إلغاء اللزوجة في الشاشات الصغيرة إذا لم تكن مرغوبة */
+    }
+    .course-main-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .tabs-nav {
+        flex-wrap: wrap; /* السماح لأزرار التبويبات بالالتفاف */
+    }
+    .tab-link {
+        font-size: 1rem;
+        padding: 10px 15px;
+        flex-basis: 50%; /* كل زر يأخذ نصف العرض */
+        text-align: center;
+        margin-left: 0;
+        border-right: 1px solid var(--border-color); /* فاصل بين الأزرار */
+        border-bottom-width: 2px; /* تقليل سمك الخط السفلي قليلاً */
+    }
+     .tab-link:nth-child(2n) { /* إزالة الحد الأيمن من الزر الثاني في كل صف */
+        border-right: none;
+    }
+
+
+    .instructor-profile-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .instructor-avatar {
+        margin-bottom: 15px;
+    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== نهاية أكواد CSS لصفحة تفاصيل الدورة (course-detail.html) ==== */
+/* ==== بداية أكواد CSS إضافية لصفحة "الأسئلة الشائعة" (faq.html) ==== */
+
+.faq-accordion-container {
+    max-width: 800px; /* تحديد عرض أقصى لحاوية الأكورديون لتسهيل القراءة */
+    margin: 0 auto; /* توسيط الحاوية في الصفحة */
+    border: none; /* إزالة أي حدود قد تكون موروثة إذا كانت .curriculum-accordion لديها حدود */
+}
+
+/* تعديل بسيط على رأس الأكورديون في صفحة الأسئلة الشائعة إذا أردت تمييزه */
+.faq-accordion-container .accordion-header {
+    background-color: var(--light-text-color); /* خلفية بيضاء بدلاً من --light-bg-color */
+    border: 1px solid var(--border-color);
+    margin-bottom: -1px; /* لدمج الحدود بين العناصر */
+    border-radius: 0; /* إزالة أي استدارة إذا كانت موروثة */
+}
+.faq-accordion-container .accordion-item:first-child .accordion-header {
+    border-top-left-radius: var(--border-radius-main);
+    border-top-right-radius: var(--border-radius-main);
+}
+.faq-accordion-container .accordion-item:last-child .accordion-header:not(.active) { /* إذا لم يكن مفتوحاً */
+    border-bottom-left-radius: var(--border-radius-main);
+    border-bottom-right-radius: var(--border-radius-main);
+}
+.faq-accordion-container .accordion-item:last-child .accordion-header.active + .accordion-content {
+    border-bottom-left-radius: var(--border-radius-main);
+    border-bottom-right-radius: var(--border-radius-main);
+}
+
+
+.faq-accordion-container .accordion-content {
+    background-color: var(--light-text-color);
+    border-right: 1px solid var(--border-color);
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    /* إزالة border-top إذا كان رأس الأكورديون لديه حد سفلي */
+}
+
+
+.faq-contact-prompt {
+    margin-top: 40px;
+    padding-top: 30px;
+    /* border-top: 1px solid var(--border-color); // تم استخدام <hr> في HTML */
+}
+
+.faq-contact-prompt h3 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.faq-contact-prompt p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* ==== نهاية أكواد CSS إضافية لصفحة "الأسئلة الشائعة" (faq.html) ==== */
+/* ==== بداية أكواد CSS للصفحات النصية (terms.html, privacy.html, etc.) ==== */
+
+/* .text-content-section section-padding يوفر الحشو الرأسي */
+
+.text-content-wrapper {
+    max-width: 800px; /* تحديد عرض أقصى للمحتوى النصي لتسهيل القراءة */
+    margin: 0 auto; /* توسيط كتلة النص في الصفحة */
+    background-color: var(--light-text-color); /* خلفية بيضاء إذا كانت مختلفة عن خلفية الصفحة */
+    padding: 25px 30px; /* حشو داخلي للمحتوى */
+    border-radius: var(--border-radius-main); /* اختياري: إذا أردت حواف مستديرة للحاوية */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05); /* اختياري: ظل خفيف */
+}
+
+.text-content-wrapper .last-updated {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 25px;
+    text-align: left; /* لليسار حتى في RTL، أو اتركه ليتأثر بالاتجاه العام */
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
+}
+
+.text-content-wrapper h2 {
+    font-size: 1.8rem; /* حجم مناسب لعناوين الأقسام الرئيسية في الصفحة النصية */
+    color: var(--primary-color);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--border-color); /* خط أسفل العنوان الرئيسي للقسم */
+}
+.text-content-wrapper h2:first-of-type { /* لإزالة الهامش العلوي لأول عنوان H2 */
+    margin-top: 0;
+}
+
+
+.text-content-wrapper h3 {
+    font-size: 1.5rem;
+    color: var(--dark-text-color);
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.text-content-wrapper p {
+    font-size: 1rem; /* حجم خط مناسب للقراءة المطولة */
+    line-height: 1.8; /* ارتفاع سطر مريح */
+    margin-bottom: 18px;
+    color: #555; /* لون أغمق قليلاً من var(--dark-text-color) إذا أردت */
+}
+
+.text-content-wrapper ul,
+.text-content-wrapper ol {
+    margin-bottom: 18px;
+    padding-right: 20px; /* مسافة بادئة لليمين في RTL */
+}
+
+.text-content-wrapper ul li,
+.text-content-wrapper ol li {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.text-content-wrapper ul {
+    list-style-type: disc; /* أو 'circle' أو 'square' */
+}
+
+.text-content-wrapper ol {
+    list-style-type: decimal; /* أرقام */
+}
+
+.text-content-wrapper a { /* تنسيق عام للروابط داخل المحتوى النصي */
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.text-content-wrapper a:hover {
+    color: var(--secondary-color);
+}
+
+/* --- تعديلات Responsive للصفحات النصية --- */
+@media (max-width: 768px) {
+    .text-content-wrapper {
+        padding: 20px 25px;
+    }
+    .text-content-wrapper h2 {
+        font-size: 1.6rem;
+    }
+    .text-content-wrapper h3 {
+        font-size: 1.3rem;
+    }
+    .text-content-wrapper p,
+    .text-content-wrapper ul li,
+    .text-content-wrapper ol li {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .text-content-wrapper {
+        padding: 15px 20px;
+    }
+}
+
+
+/* ==== نهاية أكواد CSS للصفحات النصية ==== */
+/* ==== بداية أكواد CSS للتحقق من صحة النماذج ==== */
+
+.form-group {
+    position: relative; /* لجعل تحديد موضع رسالة الخطأ أسهل إذا أردت */
+}
+
+.error-message {
+    display: block; /* لجعلها تأخذ سطراً جديداً */
+    color: #e74c3c; /* لون أحمر للخطأ */
+    font-size: 0.85rem;
+    margin-top: 5px;
+    /* يمكن إضافة أيقونة خطأ هنا إذا أردت */
+}
+
+.form-control.input-error {
+    border-color: #e74c3c !important; /* حدود حمراء للحقل الذي به خطأ */
+    box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.25) !important; /* ظل أحمر خفيف */
+}
+
+/* (اختياري) تنسيق للحقل الصحيح */
+.form-control.input-success {
+    border-color: var(--accent-color) !important; /* حدود خضراء */
+    box-shadow: 0 0 0 0.2rem rgba(46, 204, 113, 0.25) !important; /* ظل أخضر خفيف */
+}
+
+.status-message {
+    display: block;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border-radius: var(--border-radius-main);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.status-message.success {
+    background-color: #d4edda; /* أخضر فاتح */
+    color: #155724; /* أخضر داكن */
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background-color: #f8d7da; /* أحمر فاتح */
+    color: #721c24; /* أحمر داكن */
+    border: 1px solid #f5c6cb;
+}
+
+
+/* ==== نهاية أكواد CSS للتحقق من صحة النماذج ==== */
+/* في ملف style.css */
+.error-message-checkbox {
+     margin-top: 0;  /* أو أي تعديل تحتاجه لموضعه */
+     padding-right: 25px;  /* إذا كان مربع الاختيار لديه هامش يسار */
+}
+/* ==== بداية أكواد CSS لإشعارات المستخدم (Toasts) ==== */
+
+.toast-container {
+    position: fixed;
+    top: 20px; /* أو bottom: 20px; */
+    right: 20px; /* أو left: 20px; لتغيير موضع الحاوية */
+    z-index: 1050; /* لضمان ظهوره فوق العناصر الأخرى */
+    width: 300px; /* عرض افتراضي للإشعارات، يمكن تعديله */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* مسافة بين الإشعارات */
+}
+
+.toast {
+    background-color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    display: flex;
+    align-items: flex-start; /* محاذاة الأيقونة مع بداية النص */
+    opacity: 0; /* مخفي بشكل افتراضي */
+    transform: translateX(100%); /* يبدأ من خارج الشاشة (لليمين) */
+    transition: opacity 0.3s ease-in-out, transform 0.4s ease-in-out;
+    pointer-events: none; /* غير قابل للنقر وهو مخفي */
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0); /* يظهر في مكانه */
+    pointer-events: auto; /* قابل للنقر عند ظهوره */
+}
+
+/* (اختياري) تأثير إخفاء مختلف */
+.toast.hide {
+    opacity: 0;
+    transform: scale(0.9); /* أو أي تأثير آخر */
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+
+.toast-icon {
+    margin-left: 15px; /* لليمين في RTL */
+    font-size: 1.5rem; /* حجم الأيقونة */
+    line-height: 1; /* لضبط المحاذاة */
+    flex-shrink: 0;
+}
+
+.toast-content {
+    flex-grow: 1;
+}
+
+.toast-title {
+    font-weight: 700;
+    color: var(--dark-text-color);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.toast-message {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.toast-close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.2rem;
+    line-height: 1;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0 5px;
+    margin-right: -5px; /* لتقليل الحشو الزائد */
+    align-self: flex-start; /* محاذاة زر الإغلاق للأعلى */
+}
+
+.toast-close:hover {
+    color: #333;
+    opacity: 1;
+}
+
+/* --- أنواع الإشعارات --- */
+.toast-success {
+    border-left: 5px solid var(--accent-color); /* شريط جانبي أخضر لليمين في RTL */
+}
+.toast-success .toast-icon {
+    color: var(--accent-color);
+}
+.toast-success .toast-title {
+    color: var(--accent-color);  /* يمكن جعل العنوان بنفس لون النوع */
+}
+
+.toast-error {
+    border-left: 5px solid #e74c3c; /* أحمر */
+}
+.toast-error .toast-icon {
+    color: #e74c3c;
+}
+
+.toast-info {
+    border-left: 5px solid var(--primary-color); /* أزرق */
+}
+.toast-info .toast-icon {
+    color: var(--primary-color);
+}
+
+.toast-warning {
+    border-left: 5px solid var(--secondary-color); /* برتقالي */
+}
+.toast-warning .toast-icon {
+    color: var(--secondary-color);
+}
+
+/* تعديلات للاتجاه من اليمين لليسار (RTL) إذا كان الشريط الجانبي على اليمين */
+html[dir="rtl"] .toast-success,
+html[dir="rtl"] .toast-error,
+html[dir="rtl"] .toast-info,
+html[dir="rtl"] .toast-warning {
+    border-left: none;
+    border-right: 5px solid; /* اللون سيتم تحديده بواسطة الكلاس المحدد */
+}
+html[dir="rtl"] .toast-success { border-right-color: var(--accent-color); }
+html[dir="rtl"] .toast-error   { border-right-color: #e74c3c; }
+html[dir="rtl"] .toast-info    { border-right-color: var(--primary-color); }
+html[dir="rtl"] .toast-warning { border-right-color: var(--secondary-color); }
+
+html[dir="rtl"] .toast-icon {
+    margin-left: 0;
+    margin-right: 15px;
+}
+html[dir="rtl"] .toast-close {
+    margin-right: auto; /* لدفع زر الإغلاق لليسار */
+    margin-left: -5px;
+}
+
+
+/* --- Responsive للإشعارات --- */
+@media (max-width: 480px) {
+    .toast-container {
+        width: calc(100% - 40px); /* عرض كامل تقريباً مع هوامش */
+        left: 20px;
+        right: 20px;
+        /* يمكن تعديل top أو bottom إذا أردت */
+    }
+}
+
+/* ==== نهاية أكواد CSS لإشعارات المستخدم (Toasts) ==== */
